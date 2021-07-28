@@ -2,6 +2,7 @@ package pdfcanvas
 
 import (
 	"image"
+	"io"
 
 	"github.com/hyde042/canvas"
 
@@ -20,7 +21,9 @@ type Canvas struct {
 func New( /* TODO: options */ ) *Canvas {
 	var c Canvas
 	c.doc.Start(gopdf.Config{PageSize: *gopdf.PageSizeA4})
+	c.doc.AddPage()
 
+	// TODO: opetation logging and proper page building
 	// TODO: load default font(s) lazily
 
 	fontData, err := canvas.FontFS.ReadFile("font/LiberationSerif-Regular.ttf")
@@ -50,7 +53,9 @@ func (c *Canvas) SetFont(name string, size int) {
 }
 
 func (c *Canvas) Text(s string) {
+	c.doc.Text(s)
+}
 
-	// TODO
-
+func (c *Canvas) Write(w io.Writer) error {
+	return c.doc.Write(w)
 }
