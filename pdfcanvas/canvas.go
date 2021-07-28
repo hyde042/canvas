@@ -5,6 +5,7 @@ import (
 	"io"
 
 	"github.com/hyde042/canvas"
+	"github.com/hyde042/canvas/layout"
 
 	"github.com/signintech/gopdf"
 )
@@ -37,12 +38,7 @@ func New( /* TODO: options */ ) *Canvas {
 	return &c
 }
 
-func (t *Canvas) Move(p image.Point) {
-	t.doc.SetX(float64(p.X))
-	t.doc.SetY(float64(p.Y))
-}
-
-func (t *Canvas) Draw(img image.Image, rect *image.Rectangle) {
+func (t *Canvas) Draw(p layout.Point, img image.Image, rect *image.Rectangle) {
 
 	// TODO
 
@@ -52,10 +48,16 @@ func (t *Canvas) SetFont(name string, size int) {
 	t.doc.SetFont(name, "", size)
 }
 
-func (t *Canvas) Text(s string) {
+func (t *Canvas) DrawText(p layout.Point, s string) {
+	t.move(p)
 	t.doc.Text(s)
 }
 
 func (t *Canvas) Write(w io.Writer) error {
 	return t.doc.Write(w)
+}
+
+func (t *Canvas) move(p layout.Point) {
+	t.doc.SetX(p.X())
+	t.doc.SetY(p.Y())
 }
