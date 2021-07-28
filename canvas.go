@@ -17,3 +17,8 @@ type TextCanvas interface {
 	SetFont(name string, size int)
 	DrawText(p layout.Point, s string)
 }
+
+type PagedCanvas interface {
+	Canvas
+	AddPage()
+}

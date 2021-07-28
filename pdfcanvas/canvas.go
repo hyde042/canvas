@@ -13,6 +13,7 @@ import (
 var _ interface {
 	canvas.Canvas
 	canvas.TextCanvas
+	canvas.PagedCanvas
 } = &Canvas{}
 
 type Canvas struct {
@@ -53,11 +54,15 @@ func (t *Canvas) DrawText(p layout.Point, s string) {
 	t.doc.Text(s)
 }
 
-func (t *Canvas) Write(w io.Writer) error {
-	return t.doc.Write(w)
-}
-
 func (t *Canvas) move(p layout.Point) {
 	t.doc.SetX(p.X())
 	t.doc.SetY(p.Y())
+}
+
+func (t *Canvas) AddPage() {
+	t.doc.AddPage()
+}
+
+func (t *Canvas) Write(w io.Writer) error {
+	return t.doc.Write(w)
 }
