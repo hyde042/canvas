@@ -17,6 +17,17 @@ func (t Layout) Page(size int) Layout {
 
 type Point []float64
 
+func (t Point) X() float64 { return t.At(0) }
+func (t Point) Y() float64 { return t.At(1) }
+func (t Point) Z() float64 { return t.At(2) }
+
+func (t Point) At(i int) float64 {
+	if len(t) > i {
+		return t[i]
+	}
+	return 0.0
+}
+
 func (t Point) String() string {
 	var sb strings.Builder
 	for i, n := range t {
