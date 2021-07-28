@@ -4,8 +4,10 @@ import (
 	"image"
 )
 
+const DefaultFontSize = 16
+
 type Canvas interface {
-	Move(image.Point)
+	Move(p image.Point)
 	Draw(img image.Image, rect *image.Rectangle)
 }
 
