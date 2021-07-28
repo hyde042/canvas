@@ -37,25 +37,25 @@ func New( /* TODO: options */ ) *Canvas {
 	return &c
 }
 
-func (c *Canvas) Move(p image.Point) {
-	c.doc.SetX(float64(p.X))
-	c.doc.SetY(float64(p.Y))
+func (t *Canvas) Move(p image.Point) {
+	t.doc.SetX(float64(p.X))
+	t.doc.SetY(float64(p.Y))
 }
 
-func (c *Canvas) Draw(img image.Image, rect *image.Rectangle) {
+func (t *Canvas) Draw(img image.Image, rect *image.Rectangle) {
 
 	// TODO
 
 }
 
-func (c *Canvas) SetFont(name string, size int) {
-	c.doc.SetFont(name, "", size)
+func (t *Canvas) SetFont(name string, size int) {
+	t.doc.SetFont(name, "", size)
 }
 
-func (c *Canvas) Text(s string) {
-	c.doc.Text(s)
+func (t *Canvas) Text(s string) {
+	t.doc.Text(s)
 }
 
-func (c *Canvas) Write(w io.Writer) error {
-	return c.doc.Write(w)
+func (t *Canvas) Write(w io.Writer) error {
+	return t.doc.Write(w)
 }
