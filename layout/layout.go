@@ -8,7 +8,23 @@ import (
 
 type Layout []interface{}
 
-func (t Layout) Page(size int) Layout {
+func (t Layout) Image(p Point, path string) Layout {
+	return append(t, Image{el(p), path})
+}
+
+func (t Layout) Font(family string, size int) Layout {
+	return append(t, Font{family, size})
+}
+
+func (t Layout) Text(p Point, s string) Layout {
+	return append(t, Text{el(p), s})
+}
+
+func el(p Point) Element {
+	return Element{Position: p}
+}
+
+func (t Layout) ResolvePages(pageSize int) Layout {
 
 	// ???
 
