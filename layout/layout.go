@@ -24,11 +24,21 @@ func el(p Point) Element {
 	return Element{Position: p}
 }
 
-func (t Layout) ResolvePages(pageSize int) Layout {
+func (t Layout) AddPages(pageSize, margin int) Layout {
+	/*
+		var (
+			pageArea = pageSize - margin*2
+			pages    []Layout
+		)
+	*/
 
-	// ???
+	// TODO: ???
 
-	panic("TODO")
+	var l Layout
+
+	// TODO: ???
+
+	return l
 }
 
 type Point []float64
